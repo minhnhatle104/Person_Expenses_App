@@ -10,9 +10,8 @@ class TransactionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 450,
-      child: transactions.isEmpty
+    return LayoutBuilder(builder: (ctx, constraints) {
+      return transactions.isEmpty
           ? Column(
               children: [
                 Text(
@@ -23,7 +22,7 @@ class TransactionList extends StatelessWidget {
                   height: 20,
                 ),
                 Container(
-                  height: 200,
+                  height: constraints.maxHeight * 0.6,
                   child: Image.asset(
                     "assets/images/waiting.png",
                     fit: BoxFit.cover,
@@ -67,7 +66,7 @@ class TransactionList extends StatelessWidget {
                 );
               },
               itemCount: transactions.length,
-            ),
-    );
+            );
+    });
   }
 }
